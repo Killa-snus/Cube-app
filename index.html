@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>OLL Checklist</title>
+<title>Cube Trainer</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="OLL">
+<meta name="apple-mobile-web-app-title" content="Cube">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#17171a">
-
 <style>
 :root{--bg:#fafaf7;--card:#fff;--ink:#1c1c1a;--mute:#6b6b66;--line:#e2e1da;--acc:#2f7d4f;--yel:#f5d000;--blk:#3a3a3a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17171a;--card:#212125;--ink:#ececea;--mute:#9a9a94;--line:#34343a;--acc:#5fc388;--blk:#55555c}}
@@ -48,118 +47,176 @@ h2{font-size:15px;margin:22px 0 8px;display:flex;justify-content:space-between;c
 .chip svg{width:60px;height:60px}
 .sbtn{font-size:12px;padding:2px 8px;margin-top:6px}
 .su{margin-top:6px;font:12px/1.45 ui-monospace,Menlo,Consolas,monospace;color:var(--mute);word-break:break-word}
+
+:root{--bg:#fafaf7;--card:#fff;--ink:#1c1c1a;--mute:#6b6b66;--line:#e2e1da;--acc:#2f7d4f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17171a;--card:#212125;--ink:#ececea;--mute:#9a9a94;--line:#34343a;--acc:#5fc388}}
+:root[data-theme="dark"]{--bg:#17171a;--card:#212125;--ink:#ececea;--mute:#9a9a94;--line:#34343a;--acc:#5fc388}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:12px 16px 40px}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:6px;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line)}
+.tabs button{flex:1;padding:9px 4px;font-weight:600}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+button,select,input{font:inherit;color:var(--ink)}
+button{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 10px;cursor:pointer}
+.mute{color:var(--mute);font-size:13px}
+.note{background:var(--card);border:1px dashed var(--line);border-radius:10px;padding:10px;margin:10px 0}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:6px 0}.prog i{display:block;height:100%;width:0;background:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-top:10px}
+.card{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer}
+.card.done{border-color:var(--acc);opacity:.62}.card svg{flex:none;width:84px;height:84px}
+.info{flex:1;min-width:0}.alg,.su{font:13px/1.45 ui-monospace,Menlo,Consolas,monospace;word-break:break-word}.su{color:var(--mute);margin-top:6px;font-size:12px}
+.sbtn{font-size:12px;padding:2px 8px;margin-top:6px}.chk{width:22px;height:22px;accent-color:var(--acc)}
+.sec{display:none}.sec.on{display:block}
+#tm{user-select:none;-webkit-user-select:none;touch-action:manipulation;text-align:center;padding:34px 8px;margin:12px 0;border-radius:16px;background:var(--card);border:1px solid var(--line);cursor:pointer}
+#tm b{display:block;font:700 72px/1.1 ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+#scr{font:17px/1.5 ui-monospace,Menlo,Consolas,monospace;text-align:center;margin:8px 0;min-height:52px}
+.st{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:8px 0}.st b{display:block;font-size:18px}
+.row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:6px 0}
+.set{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center;margin-top:8px}
+.tl{max-height:220px;overflow:auto;font:14px ui-monospace,Menlo,Consolas,monospace;margin-top:6px}
+.bar{position:static;border:0;padding:4px 0}
+.tabs{position:sticky;top:env(safe-area-inset-top,0px);z-index:9}
+.sec{display:none}.sec.on{display:block}
+.lb{display:block;font-size:13px;margin-bottom:2px}
+h3{font-size:15px}
 </style></head><body><div class="wrap">
-<h1>OLL checklist</h1>
-<div class="sub">All 57 cases with algs from <a href="https://www.cube.academy/oll-algs" target="_blank" rel="noopener">cube.academy</a>. Tap a card to tick it off. Progress saves in this browser.</div>
-<div class="bar"><div class="row"><b id="cnt">0 / 57 learned</b><span><button id="hb">Hide learned</button> <button id="rb">Reset</button></span></div><div class="prog"><i id="pb"></i></div></div>
-<div class="panel"><h3>Flashcards</h3><div id="fc"></div></div>
-<div class="panel"><h3>Recall tracker</h3><div id="trk"></div></div>
-<h2><span>Checklist</span></h2>
-<div id="app"></div>
-</div>
+<div class="tabs"><button data-t="oll" class="on">OLL</button><button data-t="pll">PLL</button><button data-t="f2l">F2L</button><button data-t="tim">Timer</button></div>
+<div id="oll" class="sec on"></div><div id="pll" class="sec"></div><div id="f2l" class="sec"></div>
+<div id="tim" class="sec">
+<div class="row"><select id="ss" aria-label="Session"></select><button id="ns">New session</button></div>
+<div id="scr"></div><div class="row"><button id="nsc">New scramble</button></div>
+<div id="tm"><b id="td">0.00</b><div id="dv" style="font:600 20px ui-monospace,Menlo,Consolas,monospace;min-height:28px"></div><span class="mute" id="ts">Hold space (or touch and hold) until green, release to start</span></div>
+<div class="row"><button id="p2">+2</button><button id="pd">DNF</button><button id="dl">Delete last</button><button id="cl">Clear session</button></div>
+<div class="st" id="stats"></div><div class="tl" id="tl"></div>
+<details class="note"><summary>Timer settings</summary><div class="set">
+<label for="sI">Inspection (15 s)</label><select id="sI"><option value="0">Off</option><option value="1">On</option></select>
+<label for="sH">Hold time before start</label><select id="sH"><option value="0">None</option><option value="300">0.3 s</option><option value="550">0.55 s</option></select>
+<label for="sU">Timer display</label><select id="sU"><option value="live">Live</option><option value="stop">Show on stop</option><option value="hide">Hidden while solving</option></select>
+<label for="sD">Decimals</label><select id="sD"><option value="2">0.01</option><option value="3">0.001</option></select>
+<label for="sF">Timer size</label><input id="sF" type="range" min="40" max="120">
+<label for="sC">Accent color</label><input id="sC" type="color"></div></details>
+</div></div>
 <script>
-const DATA=[["Solved Cross",[["R U R' U (R U2 R')","010111110100100001000"],["(R U2 R') U' R U' R'","011111010000001100100"],["R U R' U (R U' R' U) R U2 R'","010111010000101000101"],["R U2 (R2 U') (R2 U') R2 U2 R","010111010001000001101"],["(R U R) D (R' U' R) D' R2","010111111000100000100"],["R2 D' (R U' R') D (R U R)","110111011001000000001"],["R2 D (R' U2 R) D' (R' U2 R')","111111010000000101000"]]],["T Shapes",[["F (R U R' U') F'","001111001010000010101"],["(R U R' U') (R' F R F')","001111001110000110000"]]],["Block Shapes",[["(r U2 R') U' R U' r'","011011000000001110110"],["(r' U2 R) U R' U r","000011011110100000011"]]],["Edges Only",[["(r U R' U') M (U R U' R')","111110101000010010000"],["(R U R' U') M' (U R U' r')","101111101010000010000"]]],["Lightning Shapes",[["r U R' U (R U2 r')","010110100100110011000"],["R' F' (r U' r') F2 R","010011001001000110110"],["r' (R2 U R' U R U2 R') U M'","000011110110100001010"],["r (R2 U' R U' R' U2 R) U' M","110011000001001110010"],["(f R' F' R) (U R U' R') S'","100111001010100110000"],["f' (r U r' U') (r' F r S)","001111100010000011100"]]],["P Shapes",[["F (U R U' R') F'","110110100000111010000"],["R' (U' F' U F) R","111110000000010111000"],["R' U' F (U R U' R') F' R","011011001100000110010"],["S (R U R' U') (R' F R f')","001011011110000100010"]]],["C Shapes",[["R' U' (R' F R F') U R","110010110000111000010"],["f R f' U' r' U' R U M'","011010011100010100010"]]],["Fish Shapes",[["(F R' F' R) (U R U' R')","110110001000110110000"],["R U2 R2' (F R F' R) U2 R'","100011011010100100010"],["(R U R' U') R' F (R2 U R' U') F'","010110001001010110100"],["R U R' U (R' F R F') R U2 R'","001110010110010001001"]]],["W Shapes",[["(R U R' U) R U' R' U' (R' F R F')","011110100100011010000"],["(L' U' L U') L' U L U (r U' r' F)","110011001001000010011"]]],["Hook Shapes",[["F (R U R' U') (R U R' U') F'","010110000001010011101"],["(F R' F' R) U2 (R U' R' U) R U2 R'","010110000101011010001"],["r U R' U (R U' R' U) R U2 r'","010011000000101010111"],["r' U' R U' (R' U R U') R' U2 r","000011010010101000111"],["r U' (r2' U) (r2 U) r2' U' r","010011000001000011111"],["r' U (r2 U') (r2' U') r2 U r'","000011010011000001111"]]],["Line Shapes",[["F (U R U' R') (U R U' R') F'","000111000110101110000"],["R' (F' U' F U') R U R' U R","010010010001010001111"],["r U r' (U R U' R') (U R U' R') r U' r'","000111000010101010101"],["R' F (R U R U') R2 F' R2 U' R' U (R U R')","000111000111000111000"]]],["L Shapes",[["r U r' (R U R' U') r U' r'","001111000010001110100"],["R' F' R (L' U' L U) R' F R","100111000010100011001"],["(F U R U') R2 F' R (U R U' R')","000111100110100011000"],["R' F (R U R') F' R (F U' F')","000111001011000110100"]]],["Awkward Shapes",[["r2 D' (r U r') D r2 U' (r' U' r)","101110010010011000001"],["F U (R U2 R' U') (R U2 R' U') F'","010110101000110010100"],["(R U R' U R U2 R') F (R U R' U') F'","010110101101010010000"],["R' U' F2 u' (R U R') D R2 B","011110001000010010101"]]],["Dot Cases",[["R U2 (R2 F R F') U2 (R' F R F')","000010000010111010111"],["f (U R U' R') S' (U R U' R') F'","000010000110111110010"],["(F R' F' R) U S' (R U' R') S","100010001010110110010"],["S' (R U R') S U' (R' F R F')","001010001110010110010"],["(r U R' U R U2 r') (r' U' R U' R' U2 r)","101010000010010111010"],["(R' F2 R2 U2 R') F' (R U2 R2 F2 R)","001010000010011110110"],["S R' U' (R U) (R U) R U' R' S'","101010101010010010010"],["(R' F2 R2 U2 R') F (R U2 R2 F2 R)","100010000010110011011"]]]];
-const KEY="oll-learned-v1";let done={};
-try{done=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){done={}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(done))}catch(e){}}
-function svg(s){
-  const c=34,o=14,k=(v,i)=>v==="1"?"var(--yel)":"var(--blk)";
-  let r='<svg viewBox="0 0 '+(o*2+c*3)+' '+(o*2+c*3)+'" aria-hidden="true">';
-  const rect=(x,y,w,h,v)=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="3" fill="'+k(v)+'" stroke="var(--card)" stroke-width="2"/>';
-  for(let i=0;i<9;i++)r+=rect(o+(i%3)*c,o+Math.floor(i/3)*c,c,c,s[i]);
-  for(let i=0;i<3;i++){
-    r+=rect(o+i*c,1,c,o-3,s[9+i]);
-    r+=rect(o+c*3+2,o+i*c,o-3,c,s[12+i]);
-    r+=rect(o+i*c,o+c*3+2,c,o-3,s[15+i]);
-    r+=rect(1,o+i*c,o-3,c,s[18+i]);
-  }
-  return r+'</svg>';
-}
-const app=document.getElementById("app");let n=0;const byId={};
+const DATA={"oll":[["Solved Cross",[["","R U R' U (R U2 R')","010111110100100001000"],["","(R U2 R') U' R U' R'","011111010000001100100"],["","R U R' U (R U' R' U) R U2 R'","010111010000101000101"],["","R U2 (R2 U') (R2 U') R2 U2 R","010111010001000001101"],["","(R U R) D (R' U' R) D' R2","010111111000100000100"],["","R2 D' (R U' R') D (R U R)","110111011001000000001"],["","R2 D (R' U2 R) D' (R' U2 R')","111111010000000101000"]]],["T Shapes",[["","F (R U R' U') F'","001111001010000010101"],["","(R U R' U') (R' F R F')","001111001110000110000"]]],["Block Shapes",[["","(r U2 R') U' R U' r'","011011000000001110110"],["","(r' U2 R) U R' U r","000011011110100000011"]]],["Edges Only",[["","(r U R' U') M (U R U' R')","111110101000010010000"],["","(R U R' U') M' (U R U' r')","101111101010000010000"]]],["Lightning Shapes",[["","r U R' U (R U2 r')","010110100100110011000"],["","R' F' (r U' r') F2 R","010011001001000110110"],["","r' (R2 U R' U R U2 R') U M'","000011110110100001010"],["","r (R2 U' R U' R' U2 R) U' M","110011000001001110010"],["","(f R' F' R) (U R U' R') S'","100111001010100110000"],["","f' (r U r' U') (r' F r S)","001111100010000011100"]]],["P Shapes",[["","F (U R U' R') F'","110110100000111010000"],["","R' (U' F' U F) R","111110000000010111000"],["","R' U' F (U R U' R') F' R","011011001100000110010"],["","S (R U R' U') (R' F R f')","001011011110000100010"]]],["C Shapes",[["","R' U' (R' F R F') U R","110010110000111000010"],["","f R f' U' r' U' R U M'","011010011100010100010"]]],["Fish Shapes",[["","(F R' F' R) (U R U' R')","110110001000110110000"],["","R U2 R2' (F R F' R) U2 R'","100011011010100100010"],["","(R U R' U') R' F (R2 U R' U') F'","010110001001010110100"],["","R U R' U (R' F R F') R U2 R'","001110010110010001001"]]],["W Shapes",[["","(R U R' U) R U' R' U' (R' F R F')","011110100100011010000"],["","(L' U' L U') L' U L U (r U' r' F)","110011001001000010011"]]],["Hook Shapes",[["","F (R U R' U') (R U R' U') F'","010110000001010011101"],["","(F R' F' R) U2 (R U' R' U) R U2 R'","010110000101011010001"],["","r U R' U (R U' R' U) R U2 r'","010011000000101010111"],["","r' U' R U' (R' U R U') R' U2 r","000011010010101000111"],["","r U' (r2' U) (r2 U) r2' U' r","010011000001000011111"],["","r' U (r2 U') (r2' U') r2 U r'","000011010011000001111"]]],["Line Shapes",[["","F (U R U' R') (U R U' R') F'","000111000110101110000"],["","R' (F' U' F U') R U R' U R","010010010001010001111"],["","r U r' (U R U' R') (U R U' R') r U' r'","000111000010101010101"],["","R' F (R U R U') R2 F' R2 U' R' U (R U R')","000111000111000111000"]]],["L Shapes",[["","r U r' (R U R' U') r U' r'","001111000010001110100"],["","R' F' R (L' U' L U) R' F R","100111000010100011001"],["","(F U R U') R2 F' R (U R U' R')","000111100110100011000"],["","R' F (R U R') F' R (F U' F')","000111001011000110100"]]],["Awkward Shapes",[["","r2 D' (r U r') D r2 U' (r' U' r)","101110010010011000001"],["","F U (R U2 R' U') (R U2 R' U') F'","010110101000110010100"],["","(R U R' U R U2 R') F (R U R' U') F'","010110101101010010000"],["","R' U' F2 u' (R U R') D R2 B","011110001000010010101"]]],["Dot Cases",[["","R U2 (R2 F R F') U2 (R' F R F')","000010000010111010111"],["","f (U R U' R') S' (U R U' R') F'","000010000110111110010"],["","(F R' F' R) U S' (R U' R') S","100010001010110110010"],["","S' (R U R') S U' (R' F R F')","001010001110010110010"],["","(r U R' U R U2 r') (r' U' R U' R' U2 r)","101010000010010111010"],["","(R' F2 R2 U2 R') F' (R U2 R2 F2 R)","001010000010011110110"],["","S R' U' (R U) (R U) R U' R' S'","101010101010010010010"],["","(R' F2 R2 U2 R') F (R U2 R2 F2 R)","100010000010110011011"]]]],"pll":[["Edges Only",[["Ua Perm","(R U R' U) R' U' (R2 U' R') U R' U R","GRGOGOBBBROR"],["Ub Perm","R' U R' U' (R' U') R' U (R U R2)","BRBRORGGGOBO"],["H Perm","M2 U' (M2 U2 M2) U' M2","BGBRORGBGORO"],["Z Perm","M' U' (M2 U') (M2 U') M' U2 M2","OGOBRBRBRGOG"]]],["Corners Only",[["Aa Perm","x (R' U R') D2 (R U' R') D2 R2 x'","RBRGROGGBBOO"],["Ab Perm","x R2 D2 (R U R') D2 (R U' R) x'","GBOBRBGGRROO"],["E Perm","x' (R U' R') D (R U R') D' (R U R') D (R U' R') D' x","OBRGRBOGRGOB"]]],["Adjacent Swap",[["Jb Perm","R U R' F' (R U R' U') R' F (R2 U' R')","RRGOOROGGBBB"],["Ja / L Perm","x R2 (F R F' R) U2 (r' U r) U2 x'","BRRGBBGGROOO"],["Ra Perm","(R U' R' U') R U R D (R' U' R D') R' U2 R'","RBGOGROOGBRB"],["Rb Perm","(R' U2 R U2) R' F (R U R' U') R' F' R2","GRBROGOGORBB"],["T Perm","(R U R' U') R' F (R2 U' R') U' (R U R' F')","BBRGOBGGRORO"],["F Perm","R' U' F' (R U R' U') R' F (R2 U' R') U' (R U R') U R","BGRGRBGBROOO"]]],["Diagonal Swap",[["Y Perm","F (R U' R' U') R U R' F' (R U R' U') R' F R F'","GOBRROGGBRBO"],["Na Perm","(R U R' U) R U R' F' (R U R' U') R' F (R2 U' R') U2 R U' R'","BBGOORBGGORR"],["Nb Perm","(R' U R U') R' (F' U' F) R U (R' U' R U') f R f'","GBBROOGGBRRO"],["V Perm","(R' U R' U') R D' R' D R' U D' R2 U' R2 D R2","GRBRBOGGBROO"]]],["G-Perms",[["Ga Perm","R2 (U R' U R') U' R U' R2 (D U') R' U R D'","BGRGOBGRROBO"],["Gb Perm","D R' U' R (U D') R2 U R' U R U' R U' R2","BORGGBGBRORO"],["Gc Perm","D R2 (U' R U' R) U R' U R2 (D' U) R U' R'","BRRGOBGBROGO"],["Gd Perm","R U R' (U' D) R2 U' R U' (R' U R' U) R2 D'","BGRGBBGORORO"]]]],"f2l":[["Both in top layer",[["F2L 1","F' U2 F","RRRYYYYYRGGBGGBGGBYOYYRRYRR"],["F2L 2","R U2 R'","GYYGYYGYGYBYGGYGGYORRORRORR"],["F2L 3","U2 F' U' F","GYYYYRYYROOYGGRGGRGGOYRRYRR"],["F2L 4","U2 R U R'","RYYYYYYGGBRRGGYGGYYBBGRRGRR"],["F2L 5","R U R' F' U' F","WRYYYYRRYGGRGGYGGYBBBGRRGRR"],["F2L 6","F' U F U F' U' F","GYYYYYRRBGGOGGOGGYYRRYRRGRR"],["F2L 7","F2 U' F U' F' U2 F2","GRRYYYYYBGGYGGOGGORRYYRRBRR"],["F2L 8","F2 U2 F U F' U F2","WYGRYYYYRGGBGGBGGYYRRYRRORR"],["F2L 9","F2 U2 R' F' R U2 F2","WRRBYYYOOGYYGGGGGRBRYYRRYRR"],["F2L 10","R U R' U R U' R'","WYOYYGYYYBOGGGYGGYRRYGRRGRR"],["F2L 11","R U' R' U' R U R'","RYGYYGYYOGGYGGYGGRBRRBRRYRR"],["F2L 12","R2 U R' U R U2 R2","RYYGYYGYOYGGGGYGGOYRRBRRBRR"],["F2L 13","R2 U2 R' U' R U' R2","WGYYYYRYGGGYGGYGGBORRORRYRR"],["F2L 14","U F' U2 F2 R' F' R","WYYRYRRGBGYYGGBGGBRGOYRRYRR"],["F2L 15","R' F' U' F U R2 U' R'","RYYRYRYYYGGRGGYGGGBGBBRRYRR"],["F2L 16","U R U R' U2 R U' R'","GYYYYYOGOYRYGGYGGYBRGORRBRR"],["F2L 17","U R U2 R' U F' U' F","GYGRYYRROYYGGGYGGYYBRORRORR"],["F2L 18","U R U2 R' U2 R U' R'","GYBYYGGYOYBGGGYGGOYRYRRRBRR"],["F2L 19","U' R U2 R' U R U' R'","WYGYYYGGOORYGGYGGYBGRORRBRR"],["F2L 20","U2 R U' R' U2 F' U' F","RRRRYYYYYGBBGGYGGYOOBGRRRRR"],["F2L 21","U2 R U2 R' U' R U R'","WYRGYYGYYYROGGYGGYGGBORRORR"],["F2L 22","U2 R' U2 R2 U R2 U R","RGBYYYRYYGBOGGYGGYGGYORRORR"],["F2L 23","U2 R2 U2 F R2 F' U2 R2","RYOYYYYROBGGGGBGGGYRYYRRYRR"],["F2L 24","U R' U2 R' U R' U' R U2 R","GGRYYYYYYRROGGYGGOGOBGRRBRR"]]],["Corner in slot, edge in top",[["F2L 25","R' F R F2 U' F","RYORYRBBRYYBGGGGGWYYGYRRGRR"],["F2L 26","R U R' U' F' U' F","BRRRYYYYYGGRGGYGGGBOYBRRRRR"],["F2L 27","U' R U2 R' F' U2 F","BBBRYYGYROOYGGYGGRGGORRRWRR"],["F2L 28","U R U2 R' U2 R U R'","YYBGYYYYRGGYGGYGGRGOYRRRWRR"],["F2L 29","U2 R U' R' U R U' R'","BYGGYYOYYBOOGGYGGWGGRRRRGRR"],["F2L 30","R U' R2 U2 R2 U R2 U R","BYRGYYYYGOOYGGYGGGORYBRRRRR"]]],["Edge in slot, corner in top",[["F2L 31","F' U F U R U R'","RYGYYGGYRYBBGGRGGYYYYGRRORR"],["F2L 32","R U R' F R' F' R","GYGYYGYYROOYGGRGGBGYYGRRRRR"],["F2L 33","R2 U2 R2 U' R2 U' R2","WYYYYYYYYOGRGGGGGRBOORRRGRR"],["F2L 34","U F' U2 F R U R'","WYRGYYGYYORBGGRGGROOBGRRGRR"],["F2L 35","U R U' R' U2 R U' R'","GYBYYYYYGBORGGGGGOYBORRRYRR"],["F2L 36","U R U2 R' U R U R'","RYYYYYYYBGGOGGGGGYYRGRRRBRR"]]],["Both in slot",[["F2L 37","R F U R U' R' F' U' R'","YYYYYYGOOYYGGGRGGWYRRGRRGRR"],["F2L 38","R U F R U R' U' F' R'","YYYGYYRYGGOYGGRGGRORRGRRWRR"],["F2L 39","R U' R U2 F R2 F' U2 R2","OYYYYYGBYYYOGGRGGGGORGRRRRR"],["F2L 40","R U2 R U R' U R U2 R2","OYYYYYGYYOOGGGGGGRRRRRRRWRR"],["F2L 41","R2 U2 R' U' R U' R' U2 R'","BYYYYYOYYYBGGGGGGWRRRRRRGRR"]]]]};
+const CL={Y:"#f5d000",W:"#f4f4f4",G:"#2fa84f",B:"#2d6fd0",R:"#d93a2f",O:"#f08a24"};
+function ld(k,d){try{return Object.assign(d,JSON.parse(localStorage.getItem(k)||"{}"))}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function inv(a){return a.replace(/[()]/g,"").trim().split(/\s+/).reverse().map(t=>{const m=t.match(/^([A-Za-z])(2)?(')?$/);if(!m)return t;return m[2]?m[1]+"2":m[3]?m[1]:m[1]+"'"}).join(" ")}
-DATA.forEach(([g,cs],gi)=>{
-  const h=document.createElement("h2");h.innerHTML="<span>"+g+"</span><span class='gc'></span>";app.appendChild(h);
-  const gr=document.createElement("div");gr.className="grid";
-  cs.forEach(([a,s],ci)=>{
-    n++;const id=gi+"-"+ci;byId[id]=[a,s,g];
-    const el=document.createElement("label");el.className="card";
-    el.innerHTML=svg(s)+'<div class="info"><div class="alg"></div></div><input type="checkbox" class="chk">';
-    el.querySelector(".alg").textContent=a;
-    const inf=el.querySelector(".info"),sb=document.createElement("button"),sd=document.createElement("div");
-    sb.type="button";sb.className="sbtn";sb.textContent="Show setup";sd.className="su";sd.hidden=true;sd.textContent=inv(a);
-    sb.onclick=e=>{e.preventDefault();e.stopPropagation();sd.hidden=!sd.hidden;sb.textContent=sd.hidden?"Show setup":"Hide setup"};
-    inf.appendChild(sb);inf.appendChild(sd);
-    const cb=el.querySelector("input");cb.checked=!!done[id];
-    cb.onchange=()=>{if(cb.checked)done[id]=1;else delete done[id];save();upd()};
-    el.dataset.id=id;gr.appendChild(el);
-  });
-  app.appendChild(gr);
-});
-function upd(){
-  let t=0;
-  document.querySelectorAll(".card").forEach(c=>{const d=!!done[c.dataset.id];c.classList.toggle("done",d);c.querySelector("input").checked=d;if(d)t++});
-  document.querySelectorAll(".grid").forEach((gr,i)=>{
-    const cards=gr.querySelectorAll(".card"),dn=gr.querySelectorAll(".card.done").length;
-    gr.classList.toggle("alldone",dn===cards.length);
-    const h=gr.previousElementSibling;h.classList.toggle("alldone",dn===cards.length);
-    h.querySelector(".gc").textContent=dn+"/"+cards.length;
-  });
-  document.getElementById("cnt").textContent=t+" / "+n+" learned";
-  document.getElementById("pb").style.width=(t/n*100)+"%";
-}
-document.getElementById("hb").onclick=function(){const h=document.body.classList.toggle("hide");this.textContent=h?"Show learned":"Hide learned"};
-document.getElementById("rb").onclick=(()=>{const b=document.getElementById("rb");let t=0;return()=>{if(!t){b.textContent="Tap again to confirm";t=setTimeout(()=>{t=0;b.textContent="Reset"},3000);return}clearTimeout(t);t=0;b.textContent="Reset";done={};save();upd()}})();
-const SK="oll-stats-v1";let st={};
-try{st=JSON.parse(localStorage.getItem(SK)||"{}")}catch(e){st={}}
-function saveSt(){try{localStorage.setItem(SK,JSON.stringify(st))}catch(e){}}
-let cur=null,shown=false,counted=false;
-function pool(){return Object.keys(done).filter(i=>byId[i])}
-function draw(){
-  const p=pool();if(!p.length){cur=null;return}
-  const c=p.length>1?p.filter(i=>i!==cur):p;
-  const w=c.map(i=>st[i]&&st[i].l?3:1),tot=w.reduce((a,b)=>a+b,0);
-  let r=Math.random()*tot,k=0;while(k<w.length-1&&r>=w[k]){r-=w[k];k++}
-  cur=c[k];shown=false;counted=false;
-  const s=st[cur]=st[cur]||{s:0,c:0,l:0};s.s++;s.l=0;saveSt();
-}
-function renderFc(){
-  const f=document.getElementById("fc");
-  if(!cur||!done[cur])draw();
-  if(!cur){f.innerHTML='<div class="mute">Tick some cases in the checklist below. Flashcards are drawn only from cases you marked as learned.</div>';return}
-  f.innerHTML='<div class="fcard" role="button" tabindex="0">'+svg(byId[cur][1])+'<div class="fcalg"></div></div><div class="su" id="sd" hidden style="text-align:center"></div><div class="fbtn"><button id="sb">Show setup</button><button id="nx">Next case</button></div>';
-  const box=f.querySelector(".fcard"),al=f.querySelector(".fcalg");
-  function paint(){if(shown){al.className="fcalg";al.textContent=byId[cur][0]}else{al.className="fcalg hint";al.textContent="Tap the case twice to show the alg"}}
-  let arm=0;function tog(){if(!shown&&!arm){arm=setTimeout(()=>{arm=0;paint()},3000);al.className="fcalg hint";al.textContent="Tap again to show the alg";return}if(arm){clearTimeout(arm);arm=0}
-    shown=!shown;
-    if(shown&&!counted){counted=true;const s=st[cur];s.c++;s.l=1;saveSt();renderTrk()}
-    paint();
-  }
-  box.onclick=tog;box.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tog()}};
-  f.querySelector("#nx").onclick=()=>{draw();renderFc();renderTrk()};
-  const sb=f.querySelector("#sb"),sd=f.querySelector("#sd");sd.textContent=inv(byId[cur][0]);
-  sb.onclick=()=>{sd.hidden=!sd.hidden;sb.textContent=sd.hidden?"Show setup":"Hide setup"};
-  paint();
-}
-function chip(i){
-  const d=document.createElement("div");d.className="chip";d.title=byId[i][2];
-  d.innerHTML=svg(byId[i][1])+"<span></span>";
-  d.lastChild.textContent=st[i].s+" seen, "+st[i].c+" checked";return d;
-}
-function renderTrk(){
-  const t=document.getElementById("trk");
-  const ids=Object.keys(st).filter(i=>byId[i]);
-  let tc=0,seen=0;const ok=[],bad=[];
-  ids.forEach(i=>{const s=st[i];tc+=s.c;seen+=s.s;(s.l?bad:ok).push(i)});
-  t.innerHTML='<div class="stat"><div><b>'+tc+'</b><span class="mute">times checked the alg</span></div><div><b>'+seen+'</b><span class="mute">cards seen</span></div><div><b>'+ok.length+'</b><span class="mute">cases with no check needed</span></div></div>'+
-   '<div class="mute">No check needed (last time you saw them)</div><div class="chips" id="okc"></div>'+
-   '<div class="mute">Still checking</div><div class="chips" id="badc"></div><button id="rs">Reset recall stats</button>';
-  const oc=t.querySelector("#okc"),bc=t.querySelector("#badc");
-  ok.forEach(i=>oc.appendChild(chip(i)));bad.forEach(i=>bc.appendChild(chip(i)));
-  if(!ok.length)oc.innerHTML='<span class="mute">None yet</span>';
-  if(!bad.length)bc.innerHTML='<span class="mute">None yet</span>';
-  (function(){const b=t.querySelector("#rs");let q=0;b.onclick=()=>{if(!q){b.textContent="Tap again to confirm";q=setTimeout(()=>{q=0;b.textContent="Reset recall stats"},3000);return}clearTimeout(q);st={};saveSt();cur=null;renderFc();renderTrk()}})();
-}
-const _u=upd;upd=function(){_u();renderFc();renderTrk()};
-upd();
+function RC(x,y,w,h,l){return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="2" fill="'+CL[l]+'" stroke="#222" stroke-width="1"/>'}
+function ollSvg(s){const c=34,o=14;let r='<svg viewBox="0 0 '+(o*2+c*3)+' '+(o*2+c*3)+'" aria-hidden="true">';
+ const rc=(x,y,w,h,v)=>'<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="3" fill="'+(v==="1"?"var(--yel)":"var(--blk)")+'" stroke="var(--card)" stroke-width="2"/>';
+ for(let i=0;i<9;i++)r+=rc(o+(i%3)*c,o+Math.floor(i/3)*c,c,c,s[i]);
+ for(let i=0;i<3;i++){r+=rc(o+i*c,1,c,o-3,s[9+i])+rc(o+c*3+2,o+i*c,o-3,c,s[12+i])+rc(o+i*c,o+c*3+2,c,o-3,s[15+i])+rc(1,o+i*c,o-3,c,s[18+i])}
+ return r+'</svg>'}
+function pllSvg(s){let r='<svg viewBox="0 0 76 76" aria-hidden="true">',c=18,o=11;
+ for(let i=0;i<9;i++)r+=RC(o+(i%3)*c,o+Math.floor(i/3)*c,c,c,"Y");
+ for(let i=0;i<3;i++)r+=RC(o+i*c,2,c,8,s[i])+RC(o+54,o+i*c,8,c,s[3+i])+RC(o+i*c,o+54,c,8,s[6+i])+RC(2,o+i*c,8,c,s[9+i]);
+ return r+'</svg>'}
+function f2lSvg(s){let r='<svg viewBox="0 0 80 80" aria-hidden="true">',c=12,g=2;
+ const face=(ox,oy,o)=>{for(let i=0;i<9;i++)r+=RC(ox+(i%3)*c,oy+Math.floor(i/3)*c,c,c,s[o+i])};
+ face(4,4,0);face(4,4+3*c+g,9);face(4+3*c+g,4+3*c+g,18);return r+'</svg>'}
+function mkTab(c){
+  const root=document.getElementById(c.id);
+  let done=ld(c.key+"-learned-v1",{}),st=ld(c.key+"-stats-v1",{});
+  const byId={};let n=0,cur=null,shown=false,counted=false;
+  root.innerHTML='<div class="bar"><div class="row"><b class="cnt"></b><span><button class="hb">Hide learned</button> <button class="rb">Reset</button></span></div><div class="prog"><i class="pb"></i></div></div><div class="panel"><h3>Flashcards</h3><div class="fc"></div></div><div class="panel"><h3>Recall tracker</h3><div class="trk"></div></div><h2><span>Checklist</span></h2><div class="app"></div>';
+  const q=s=>root.querySelector(s),app=q(".app"),saveD=()=>sv(c.key+"-learned-v1",done),saveS=()=>sv(c.key+"-stats-v1",st);
+  c.data.forEach(([g,cs],gi)=>{
+    const h=document.createElement("h2");h.innerHTML="<span></span><span class='gc'></span>";h.firstChild.textContent=g;app.appendChild(h);
+    const gr=document.createElement("div");gr.className="grid";
+    cs.forEach(([lb,a,s],ci)=>{
+      n++;const id=gi+"-"+ci;byId[id]=[a,s,g,lb];
+      const el=document.createElement("label");el.className="card";el.dataset.id=id;
+      el.innerHTML=c.svg(s)+'<div class="info"><b class="lb"></b><div class="alg"></div></div><input type="checkbox" class="chk">';
+      el.querySelector(".lb").textContent=lb;el.querySelector(".alg").textContent=a;if(!lb)el.querySelector(".lb").remove();
+      const inf=el.querySelector(".info"),sb=document.createElement("button"),sd=document.createElement("div");
+      sb.type="button";sb.className="sbtn";sb.textContent="Show setup";sd.className="su";sd.hidden=true;sd.textContent=inv(a);
+      sb.onclick=e=>{e.preventDefault();e.stopPropagation();sd.hidden=!sd.hidden;sb.textContent=sd.hidden?"Show setup":"Hide setup"};
+      inf.appendChild(sb);inf.appendChild(sd);
+      const cb=el.querySelector("input");cb.onchange=()=>{if(cb.checked)done[id]=1;else delete done[id];saveD();upd()};
+      gr.appendChild(el)});
+    app.appendChild(gr)});
+  const pool=()=>Object.keys(done).filter(i=>byId[i]);
+  function draw(){
+    const p=pool();if(!p.length){cur=null;return}
+    const cc=p.length>1?p.filter(i=>i!==cur):p,w=cc.map(i=>st[i]&&st[i].l?3:1),tot=w.reduce((a,b)=>a+b,0);
+    let r=Math.random()*tot,k=0;while(k<w.length-1&&r>=w[k]){r-=w[k];k++}
+    cur=cc[k];shown=false;counted=false;const s=st[cur]=st[cur]||{s:0,c:0,l:0};s.s++;s.l=0;saveS()}
+  function renderFc(){
+    const f=q(".fc");if(!cur||!done[cur])draw();
+    if(!cur){f.innerHTML='<div class="mute">Tick some cases in the checklist below. Flashcards are drawn only from cases you marked as learned.</div>';return}
+    f.innerHTML='<div class="fcard" role="button" tabindex="0">'+c.svg(byId[cur][1])+'<div class="fcalg"></div></div><div class="su" hidden style="text-align:center"></div><div class="fbtn"><button class="sb">Show setup</button><button class="nx">Next case</button></div>';
+    const box=f.querySelector(".fcard"),al=f.querySelector(".fcalg"),sd=f.querySelector(".su"),sb=f.querySelector(".sb");let arm=0;
+    function paint(){if(shown){al.className="fcalg";al.textContent=byId[cur][0]}else{al.className="fcalg hint";al.textContent="Tap the case twice to show the alg"}}
+    function tog(){
+      if(!shown&&!arm){arm=setTimeout(()=>{arm=0;paint()},3000);al.className="fcalg hint";al.textContent="Tap again to show the alg";return}
+      if(arm){clearTimeout(arm);arm=0}
+      shown=!shown;
+      if(shown&&!counted){counted=true;const s=st[cur];s.c++;s.l=1;saveS();renderTrk()}
+      paint()}
+    box.onclick=tog;box.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tog()}};
+    f.querySelector(".nx").onclick=()=>{draw();renderFc();renderTrk()};
+    sd.textContent=inv(byId[cur][0]);sb.onclick=()=>{sd.hidden=!sd.hidden;sb.textContent=sd.hidden?"Show setup":"Hide setup"};
+    paint()}
+  function chip(i){const d=document.createElement("div");d.className="chip";d.title=byId[i][2];d.innerHTML=c.svg(byId[i][1])+"<span></span>";d.lastChild.textContent=st[i].s+" seen, "+st[i].c+" checked";return d}
+  function renderTrk(){
+    const t=q(".trk"),ids=Object.keys(st).filter(i=>byId[i]);let tc=0,seen=0;const ok=[],bad=[];
+    ids.forEach(i=>{const s=st[i];tc+=s.c;seen+=s.s;(s.l?bad:ok).push(i)});
+    t.innerHTML='<div class="stat"><div><b>'+tc+'</b><span class="mute">times checked the alg</span></div><div><b>'+seen+'</b><span class="mute">cards seen</span></div><div><b>'+ok.length+'</b><span class="mute">cases with no check needed</span></div></div><div class="mute">No check needed (last time you saw them)</div><div class="chips okc"></div><div class="mute">Still checking</div><div class="chips badc"></div><button class="rs">Reset recall stats</button>';
+    const oc=t.querySelector(".okc"),bc=t.querySelector(".badc");
+    ok.forEach(i=>oc.appendChild(chip(i)));bad.forEach(i=>bc.appendChild(chip(i)));
+    if(!ok.length)oc.innerHTML='<span class="mute">None yet</span>';if(!bad.length)bc.innerHTML='<span class="mute">None yet</span>';
+    const b=t.querySelector(".rs");let z=0;
+    b.onclick=()=>{if(!z){b.textContent="Tap again to confirm";z=setTimeout(()=>{z=0;b.textContent="Reset recall stats"},3000);return}clearTimeout(z);st={};saveS();cur=null;renderFc();renderTrk()}}
+  function updList(){let t=0;
+    root.querySelectorAll(".card").forEach(e=>{const d=!!done[e.dataset.id];e.classList.toggle("done",d);e.querySelector("input").checked=d;if(d)t++});
+    root.querySelectorAll(".grid").forEach(gr=>{const cards=gr.querySelectorAll(".card"),dn=gr.querySelectorAll(".card.done").length,h=gr.previousElementSibling,all=dn===cards.length;gr.classList.toggle("alldone",all);h.classList.toggle("alldone",all);h.querySelector(".gc").textContent=dn+"/"+cards.length});
+    q(".cnt").textContent=t+" / "+n+" learned";q(".pb").style.width=(t/n*100)+"%"}
+  function upd(){updList();renderFc();renderTrk()}
+  q(".hb").onclick=function(){const h=root.classList.toggle("hide");this.textContent=h?"Show learned":"Hide learned"};
+  (function(){const b=q(".rb");let t=0;b.onclick=()=>{if(!t){b.textContent="Tap again to confirm";t=setTimeout(()=>{t=0;b.textContent="Reset"},3000);return}clearTimeout(t);t=0;b.textContent="Reset";done={};saveD();upd()}})();
+  upd()}
+mkTab({id:"oll",key:"oll",data:DATA.oll,svg:ollSvg});
+mkTab({id:"pll",key:"pll",data:DATA.pll,svg:pllSvg});
+mkTab({id:"f2l",key:"f2l",data:DATA.f2l,svg:f2lSvg});
+document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x===b));document.querySelectorAll(".sec").forEach(s=>s.classList.toggle("on",s.id===b.dataset.t));window.scrollTo(0,0)});
+
+/* timer */
+const S=ld("tm-set",{insp:"0",hold:"300",upd:"live",dec:"2",fs:72,acc:"#2f7d4f"});let SS={cur:0,l:[{n:"Session 1",t:[]}]};
+try{const o=JSON.parse(localStorage.getItem("tm-ses")||"null");if(o&&o.l&&o.l.length&&o.l[o.cur])SS=o;else SS.l[0].t=JSON.parse(localStorage.getItem("tm-times")||"[]")}catch(e){}
+let times=SS.l[SS.cur].t;
+const $=id=>document.getElementById(id);
+function applyS(){$("sI").value=S.insp;$("sH").value=S.hold;$("sU").value=S.upd;$("sD").value=S.dec;$("sF").value=S.fs;$("sC").value=S.acc;
+ $("td").style.fontSize=S.fs+"px";document.documentElement.style.setProperty("--acc",S.acc)}
+[["sI","insp"],["sH","hold"],["sU","upd"],["sD","dec"],["sF","fs"],["sC","acc"]].forEach(([id,k])=>$(id).oninput=()=>{S[k]=$(id).value;sv("tm-set",S);applyS();show(0)});
+function fmt(ms){if(ms===Infinity)return"DNF";const d=+S.dec,s=ms/1000,m=Math.floor(s/60);const x=(s-m*60).toFixed(d);return m?m+":"+(x.length<d+3?"0":"")+x:x}
+function val(t){return t.p<0?Infinity:t.t+(t.p>0?2000:0)}
+function ao(n){if(times.length<n)return"-";const v=times.slice(-n).map(val).sort((a,b)=>a-b);if(v.filter(x=>x===Infinity).length>1)return"DNF";const m=v.slice(1,-1);return fmt(m.reduce((a,b)=>a+b,0)/m.length)}
+function stats(){const v=times.map(val),b=v.length?Math.min(...v):0;
+ $("stats").innerHTML="<div><b>"+(v.length?fmt(v[v.length-1]):"-")+"</b><span class=mute>last</span></div><div><b>"+(v.length?fmt(b):"-")+"</b><span class=mute>best</span></div><div><b>"+ao(5)+"</b><span class=mute>ao5</span></div><div><b>"+ao(12)+"</b><span class=mute>ao12</span></div><div><b>"+v.length+"</b><span class=mute>solves</span></div>";
+ $("tl").textContent=times.map((t,i)=>(i+1)+".  "+fmt(val(t))+(t.p>0?" (+2)":"")).reverse().join("\n");$("tl").style.whiteSpace="pre";sv("tm-ses",SS);delta();sesUI()}
+function delta(){const n=times.length,d=$("dv");if(n<2){d.textContent="";return}const a=val(times[n-1]),b=val(times[n-2]);if(a===Infinity||b===Infinity){d.textContent="";return}const x=a-b;d.textContent=(x<0?"\u2212":x>0?"+":"")+(Math.abs(x)/1000).toFixed(+S.dec)+" vs last";d.style.color=x<0?"#2fa84f":x>0?"#d93a2f":""}
+function scr(){const ax=[["R","L"],["U","D"],["F","B"]],m=["","'","2"];let o=[],last=-1;while(o.length<20){const a=Math.floor(Math.random()*3);if(a===last)continue;last=a;o.push(ax[a][Math.floor(Math.random()*2)]+m[Math.floor(Math.random()*3)])}$("scr").textContent=o.join(" ")}
+let st="idle",t0=0,raf=0,ht=0,ready=false,inT=0,ip=0,tp=0;
+function show(ms){let tx=fmt(ms);if(st==="run"&&S.upd==="hide")tx="Solving";else if(st==="run"&&S.upd==="stop")tx="...";$("td").textContent=tx}
+function msg(t){$("ts").textContent=t}
+function tick(){const e=performance.now()-t0;if(S.upd==="live")show(e);else show(e);raf=requestAnimationFrame(tick)}
+function inspTick(){const s=(performance.now()-inT)/1000;ip=s>17?-1:s>15?2:0;$("td").textContent=s>17?"DNF":s>15?"+2":String(Math.max(0,Math.ceil(15-s)));raf=requestAnimationFrame(inspTick)}
+function down(){if(st==="run"){cancelAnimationFrame(raf);const e=performance.now()-t0;times.push({t:Math.round(e),p:tp});st="stopped";$("td").textContent=fmt(e+(tp>0?2000:0));msg("Stopped");stats();scr();return}
+ if(st==="stopped")return;ready=false;$("td").style.color="#d93a2f";const w=+S.hold;ht=setTimeout(()=>{ready=true;$("td").style.color="#2fa84f"},w);if(!w){ready=true;$("td").style.color="#2fa84f"}}
+function up(){if(st==="stopped"){st="idle";$("td").style.color="";return}
+ clearTimeout(ht);$("td").style.color="";
+ if(st==="idle"&&S.insp==="1"){if(ready){st="insp";inT=performance.now();ip=0;inspTick();msg("Inspecting. Hold again, release to start")}return}
+ if(ready&&(st==="idle"||st==="insp")){cancelAnimationFrame(raf);tp=st==="insp"?ip:0;st="run";$("dv").textContent="";t0=performance.now();tick();msg("Solving, touch or press space to stop")}}
+$("tm").addEventListener("pointerdown",e=>{e.preventDefault();down()});$("tm").addEventListener("pointerup",e=>{e.preventDefault();up()});
+document.addEventListener("keydown",e=>{if(e.code==="Space"&&$("tim").classList.contains("on")){e.preventDefault();if(!e.repeat)down()}});
+document.addEventListener("keyup",e=>{if(e.code==="Space"&&$("tim").classList.contains("on")){e.preventDefault();up()}});
+$("nsc").onclick=scr;$("p2").onclick=()=>{const t=times[times.length-1];if(t){t.p=t.p===2?0:2;stats()}};$("pd").onclick=()=>{const t=times[times.length-1];if(t){t.p=t.p<0?0:-1;stats()}};
+$("dl").onclick=()=>{times.pop();stats()};let cf=0;$("cl").onclick=()=>{if(!cf){$("cl").textContent="Tap again to confirm";cf=setTimeout(()=>{cf=0;$("cl").textContent="Clear session"},3000);return}clearTimeout(cf);cf=0;$("cl").textContent="Clear session";times.length=0;stats()};
+function sesUI(){const s=$("ss");s.innerHTML="";SS.l.forEach((x,i)=>{const o=document.createElement("option");o.value=i;o.textContent=x.n+" ("+x.t.length+")";s.appendChild(o)});s.value=SS.cur}
+$("ss").onchange=()=>{SS.cur=+$("ss").value;times=SS.l[SS.cur].t;stats()};
+$("ns").onclick=()=>{SS.l.push({n:"Session "+(SS.l.length+1),t:[]});SS.cur=SS.l.length-1;times=SS.l[SS.cur].t;sesUI();stats()};
+applyS();sesUI();scr();stats();show(0);
 if("serviceWorker" in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}
 </script></body></html>
